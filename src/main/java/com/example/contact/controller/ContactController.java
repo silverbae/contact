@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class ContactController {
 
     @Autowired
-    private ContactService contractService;
+    private ContactService contactService;
 
     @GetMapping("/all")
     public Iterable<Contact> getAllContact() {
-        return contractService.getAllContact();
+        return contactService.getAllContact();
     }
 
     @PostMapping("/create")
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
         try{
-            Contact newContact = contractService.createContact(contact);
+            Contact newContact = contactService.createContact(contact);
             return ResponseEntity.ok(newContact);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -32,7 +32,7 @@ public class ContactController {
     @DeleteMapping("/delete/{username}")
     public ResponseEntity<Contact> deleteContact(@PathVariable String username) {
         try{
-            contractService.deleteContact(username);
+            contactService.deleteContact(username);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -42,7 +42,7 @@ public class ContactController {
     @GetMapping("/get/{username}")
     public ResponseEntity<Contact> getContactByUsername(@PathVariable String username) {
         try{
-            Contact contact = contractService.getContactByUsername(username);
+            Contact contact = contactService.getContactByUsername(username);
             return ResponseEntity.ok(contact);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -53,7 +53,7 @@ public class ContactController {
     public ResponseEntity<Contact> updateContact(@PathVariable String username,
                                                 @RequestBody Contact contact) {
         try{
-            Contact updateContact = contractService.updateContact(username, contact);
+            Contact updateContact = contactService.updateContact(username, contact);
             return ResponseEntity.ok(updateContact);
         } catch (RuntimeException e){
             return ResponseEntity.notFound().build();
