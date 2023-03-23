@@ -17,7 +17,7 @@ $ create database contact;
 ```
 로컬에 설치된 mysql정보를 resouces/application.properties에 업데이트가 필요하다..
 db는 contact로 생성해줘야한다.
-{ip}는 localhost or ifconfig en0의 ip입력
+{ip}는 localhost로 접속해서 안된다면, ifconfig 확인한 후 ip입력
 ```
 spring.datasource.url=jdbc:mysql://{ip}:3306/contact?userSSL=false
 spring.datasource.username=root
